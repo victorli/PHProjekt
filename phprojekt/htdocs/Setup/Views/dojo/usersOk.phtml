@@ -12,13 +12,14 @@ style="width: auto;">
 <col class="col1" />
 <tr>
     <td colspan="2">
-        <button dojoType="dijit.form.Button" baseClass="positive" type="button" iconClass="tick"
+        <button id="userOK" dojoType="dijit.form.Button" baseClass="positive" type="submit" iconClass="tick"
         onClick="
         phprSend({
             url:       '<?php echo $this->webPath; ?>' + 'setup.php/index/jsonFoldersForm',
             onSuccess: dojo.hitch(this, function(data) {
                 dijit.byId('formContent').attr('content', data.template);
                 changeStep(3, 4);
+                setFocus(4);
             })
         });">
             Continue with the folders

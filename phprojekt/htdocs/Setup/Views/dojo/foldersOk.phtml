@@ -13,13 +13,14 @@ style="width: auto;">
 <col class="col1" />
 <tr>
     <td colspan="2">
-        <button dojoType="dijit.form.Button" baseClass="positive" type="button" iconClass="tick"
+        <button id="folderOK" dojoType="dijit.form.Button" baseClass="positive" type="submit" iconClass="tick"
         onClick="
         phprSend({
             url:       '<?php echo $this->webPath; ?>' + 'setup.php/index/jsonTablesForm',
             onSuccess: dojo.hitch(this, function(data) {
                 dijit.byId('formContent').attr('content', data.template);
                 changeStep(4, 5);
+                setFocus(5);
             })
         });">
             Continue with the tables

@@ -35,7 +35,7 @@ style="width: auto;">
 <col class="col1" />
 <tr>
     <td colspan="2">
-        <button dojoType="dijit.form.Button" baseClass="positive" type="button" iconClass="tick"
+        <button id="migrationOK" dojoType="dijit.form.Button" baseClass="positive" type="submit" iconClass="tick"
         onClick="
         phprSend({
             url:       '<?php echo $this->webPath; ?>' + 'setup.php/index/jsonFinish',

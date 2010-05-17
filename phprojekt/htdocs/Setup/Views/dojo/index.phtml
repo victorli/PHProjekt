@@ -52,6 +52,7 @@
         dojo.addOnLoad(function() {
             dojo.parser.parse();
             init();
+            setFocus(1);
         });
 
         window.onresize = function() {
@@ -121,6 +122,62 @@
                 + ' style="width: 15px; height: 15px"; alt=\"Loadding\" />';
         };
 
+        function setFocus(step) {
+            switch (step) {
+                case 1:
+                    if (!dojo.isIE) {
+                        var id = 'serverOK';
+                    }
+                    break;
+                case 2:
+                    var id = 'dbName';
+                    break;
+                case 21:
+                    if (!dojo.isIE) {
+                        var id = "databaseOK";
+                    }
+                    break;
+                case 3:
+                    var id = 'adminPass';
+                    break;
+                case 31:
+                    if (!dojo.isIE) {
+                        var id = 'userOK';
+                    }
+                    break;
+                case 4:
+                    var id = 'privateDir';
+                    break;
+                case 41:
+                    if (!dojo.isIE) {
+                        var id = 'folderOK';
+                    }
+                    break;
+                case 5:
+                    var id = 'useExtraData';
+                    break;
+                case 51:
+                    if (!dojo.isIE) {
+                        var id = 'tableOK';
+                    }
+                    break;
+                case 6:
+                    var id = 'migrationConfigFile';
+                    break;
+                case 61:
+                    if (!dojo.isIE) {
+                        var id = 'migrationOK';
+                    }
+                    break;
+            }
+            if (id) {
+                dojo.byId(id).focus();
+                if (dojo.isIE) {
+                    dojo.byId(id).select();
+                }
+            }
+        };
+
         <?php
             echo 'migrateData = new Array(';
             $count = 0;
@@ -151,6 +208,7 @@
                     if (data.type == 'error') {
                         makeErrorLink(data.module, data.message);
                         migrateStatus = false;
+                        setFocus(6);
                     } else {
                         dojo.byId('resultFor' + data.module).innerHTML = '<span class="tick">'
                             + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>';
@@ -170,6 +228,9 @@
                         if (migrateStatus) {
                             if (data.type != 'error') {
                                 dijit.byId('formContent').attr('content', data.template);
+                                setFocus(61);
+                            } else {
+                                setFocus(6);
                             }
                             addMessage(data.type, data.message);
                         }
@@ -197,7 +258,7 @@
             }
         };
 
-        function addMessage(type, message) {
+            function addMessage(type, message) {
             var table           = dojo.byId('message');
             table.style.display = 'inline';
 

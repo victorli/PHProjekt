@@ -32,7 +32,7 @@ style="width: auto;">
 <col class="col1" />
 <tr>
     <td class="label">
-        <label for="migration_config">Configuration file:</label>
+        <label for="migrationConfigFile">Configuration file:</label>
     </td>
     <td>
         <input dojoType="dijit.form.TextBox" type="text" id="migrationConfigFile" name="migrationConfigFile"
@@ -114,7 +114,7 @@ style="display: none">
         &nbsp;
     </td>
     <td>
-        <button dojoType="dijit.form.Button" baseClass="positive" type="button" iconClass="tick"
+        <button dojoType="dijit.form.Button" baseClass="positive" type="submit" iconClass="tick"
         onClick="
             var display = (dojo.isIE) ? 'block' : 'table-row';
             dojo.style(dojo.byId('trResults'), 'display', display);

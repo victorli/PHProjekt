@@ -11,13 +11,14 @@ style="width: auto;">
 <col class="col1" />
 <tr>
     <td colspan="2">
-        <button dojoType="dijit.form.Button" baseClass="positive" type="button" iconClass="tick"
+        <button id="tableOK" dojoType="dijit.form.Button" baseClass="positive" type="submit" iconClass="tick"
         onClick="
         phprSend({
             url:       '<?php echo $this->webPath; ?>' + 'setup.php/index/jsonMigrationForm',
             onSuccess: dojo.hitch(this, function(data) {
                 dijit.byId('formContent').attr('content', data.template);
                 changeStep(5, 6);
+                setFocus(6);
             })
         });">
             Continue with the migration
