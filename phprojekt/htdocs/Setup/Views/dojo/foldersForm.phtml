@@ -14,7 +14,7 @@ include ("serverFeedback.phtml");
     <col class="col1" />
     <tr>
         <td class="label">
-            <label for="migration_config">Folder name:</label>
+            <label for="privateDir">Folder name:</label>
         </td>
         <td>
             <input type="hidden" dojotype="dijit.form.TextBox" id="confirmationCheck" name="confirmationCheck"
@@ -37,7 +37,7 @@ include ("serverFeedback.phtml");
             &nbsp;
         </td>
         <td>
-            <button dojoType="dijit.form.Button" baseClass="positive" type="button" iconClass="tick"
+            <button dojoType="dijit.form.Button" baseClass="positive" type="submit" iconClass="tick"
             onClick="
             phprSend({
                 url:       '<?php echo $this->webPath; ?>' + 'setup.php/index/jsonFoldersSetup',
@@ -48,6 +48,9 @@ include ("serverFeedback.phtml");
                         dojo.style('confirmationForm', 'display', 'inline');
                     } else if (data.type != 'error') {
                         dijit.byId('formContent').attr('content', data.template);
+                        setFocus(41);
+                    } else {
+                        setFocus(4);
                     }
                     addMessage(data.type, data.message);
                 })
@@ -78,6 +81,9 @@ style="display: none;">
                 onSuccess: dojo.hitch(this, function(data) {
                     if (data.type != 'error') {
                         dijit.byId('formContent').attr('content', data.template);
+                        setFocus(41);
+                    } else {
+                        setFocus(4);
                     }
                     addMessage(data.type, data.message);
                 })
@@ -85,11 +91,12 @@ style="display: none;">
                 OK
             </button>
             &nbsp;&nbsp;
-            <button dojoType="dijit.form.Button" type="button" iconClass="cross"
+            <button dojoType="dijit.form.Button" baseClass="positive" type="button" iconClass="cross"
             onClick="
             dojo.style('normalForm', 'display', 'inline');
             dojo.style('confirmationForm', 'display', 'none');
             dojo.style('message', 'display', 'none');
+            setFocus(4);
             ">
                 Cancel
             </button>

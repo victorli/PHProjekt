@@ -118,7 +118,7 @@ style="width: auto;">
         &nbsp;
     </td>
     <td>
-        <button dojoType="dijit.form.Button" baseClass="positive" type="button" iconClass="tick"
+        <button dojoType="dijit.form.Button" baseClass="positive" type="submit" iconClass="tick"
         onClick="
         phprSend({
             url:       '<?php echo $this->webPath; ?>' + 'setup.php/index/jsonDatabaseSetup',
@@ -126,6 +126,9 @@ style="width: auto;">
             onSuccess: dojo.hitch(this, function(data) {
                 if (data.type != 'error') {
                     dijit.byId('formContent').attr('content', data.template);
+                    setFocus(21);
+                } else {
+                    setFocus(2);
                 }
                 addMessage(data.type, data.message);
             })
